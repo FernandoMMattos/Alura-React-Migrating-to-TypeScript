@@ -6,8 +6,8 @@ import "./Formulario.css";
 import { IColaborador } from "../../compartilhado/interfaces/IColaborador";
 
 interface FormularioProps {
-  aoColaboradorCadastrado: (colaborador: IColaborador) => void
-  times: string[]
+  aoColaboradorCadastrado: (colaborador: IColaborador) => void;
+  times: string[];
 }
 
 const Formulario = (props: FormularioProps) => {
@@ -15,6 +15,7 @@ const Formulario = (props: FormularioProps) => {
   const [cargo, setCargo] = useState("");
   const [imagem, setImagem] = useState("");
   const [time, setTime] = useState("");
+  const [data, setData] = useState("");
 
   const aoSalvar = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -23,16 +24,18 @@ const Formulario = (props: FormularioProps) => {
       cargo,
       imagem,
       time,
+      data,
     });
     setNome("");
     setCargo("");
     setImagem("");
     setTime("");
+    setData("")
   };
 
   return (
     <section className="formulario">
-      <form onSubmit={e => aoSalvar(e)}>
+      <form onSubmit={(e) => aoSalvar(e)}>
         <h2>Preencha os dados para criar o card do colaborador.</h2>
         <CampoTexto
           valor={nome}
@@ -53,6 +56,13 @@ const Formulario = (props: FormularioProps) => {
           aoAlterado={(valor) => setImagem(valor)}
           label="Imagem"
           placeholder="Digite o endereço da imagem"
+        />
+        <CampoTexto
+          label="Data de entrada no time"
+          placeholder=""
+          valor={data}
+          aoAlterado={(valor) => setData(valor)}
+          tipo="date"
         />
         <ListaSuspensa
           valor={time}

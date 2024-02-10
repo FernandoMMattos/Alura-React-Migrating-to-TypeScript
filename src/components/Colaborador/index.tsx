@@ -1,7 +1,13 @@
 import { IColaborador } from "../../compartilhado/interfaces/IColaborador";
 import "./Colaborador.css";
 
-const Colaborador = ({ nome, cargo, imagem, corPrimaria }: IColaborador) => {
+const Colaborador = ({
+  nome,
+  cargo,
+  imagem,
+  corPrimaria,
+  data,
+}: IColaborador) => {
   return (
     <div className="colaborador">
       <div className="cabecalho" style={{ backgroundColor: corPrimaria }}>
@@ -10,6 +16,7 @@ const Colaborador = ({ nome, cargo, imagem, corPrimaria }: IColaborador) => {
       <div className="rodape">
         <h4>{nome}</h4>
         <h5>{cargo}</h5>
+        <h5>{new Date(data).toLocaleDateString()}</h5>
       </div>
     </div>
   );
